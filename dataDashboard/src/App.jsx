@@ -1,5 +1,8 @@
 import { React, useEffect, useState } from 'react'
+// import dotenv from 'dotenv';
 import './App.css'
+
+// dotenv.config();
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY;
 
@@ -11,11 +14,11 @@ function App() {
       try{
           const response = await fetch(
             `https://api.spoonacular.com/food/restaurants/search?apiKey=${API_KEY}`
-            // `https://api.spoonacular.com/food/restaurants/search?cuisine=italian&lat=34.7786357&lng=-122.3918135`
+            // `http://gateway.marvel.com/v1/public/comics?ts=1&apikey=${API_KEY}`
           );
           const json = await response.json();
           console.log(json); //log responses to see its structure
-          if(Array.isArray(json)){
+          if(json.results && Array.isArray(json.results)){
             setList(json);
           } else {
             console.error("Expected an array but got:", json);
