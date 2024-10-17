@@ -8,12 +8,22 @@ function App() {
 
   useEffect(() => {
     const fetchAllRestaurantData = async () => {
-      const response = await fetch(
-        `https://api.spoonacular.com/food/restaurants/search?apiKey=${API_KEY}`
-        // "https://api.spoonacular.com/food/restaurants/search?cuisine=italian&lat=34.7786357&lng=-122.3918135"
-      );
-      const json = await response.json();
-      setList(json);
+      try{
+          const response = await fetch(
+            `https://api.spoonacular.com/food/restaurants/search?apiKey=${API_KEY}`
+            // `https://api.spoonacular.com/food/restaurants/search?cuisine=italian&lat=34.7786357&lng=-122.3918135`
+          );
+          const json = await response.json();
+          console.log(json); //log responses to see its structure
+          if(Array.isArray(json)){
+            setList(json);
+          } else {
+            console.error("Expected an array but got:", json);
+          } 
+        } catch(error){
+          console.error("Error fetching data:", error);
+        }
+      // setList(json);
     };
     /**call etchAllRestaurantData & handle any errors that may come with it */
     fetchAllRestaurantData().catch(console.error);
