@@ -1,22 +1,26 @@
 import React, {useState, useEffect} from 'react';
 const API_KEY = '0ce5b7cc67ee05cd71a0b41eabcd9a9a';
 
-const CreatorInfo = ({creatorName, comicName, comicId}) => {
+const CreatorInfo = ({comicId}) => {//use the comic id to get all the other comic info
     const [creators, setCreators] = useState(null);
+    const [comicImage, setComicImage] = useState(null);
+
 
     useEffect(() => {
-        const fetchCreatorData = async () => {
+        const fetchComicData = async () => {
             try{
-                const response = await fetch(`https://gateway.marvel.com:443/v1/public/comics/${comicId}/creators?apikey=${API_KEY}`)
-                // console.log("comicId:", response);
+                const response = await fetch(`https://gateway.marvel.com:443/v1/public/comics/${comicId}?apikey=${API_KEY}`)
                 if (response.ok){
                     const json = await response.json();
-                    // console.log("comicId in response.ok:", json);
-                    console.log("Creator API Response:", json);
+                    console.log("Comic API Response:", json);
 
-                    if(json.data && Array.isArray(json.data.results)){
-                        setCreators(json.data.results);
-                    } else{
+                    // if(json.data && Array.isArray(json.data.results)){
+                    //     setCreators(json.data.results);
+                    if(json.data && json.data.results && json.data.results.length > 0){
+                        const comic = json.data.results[0];
+                        setCreators(comic.creators.items);
+                        setComicImage(`${comic.thumbnail.path}.${comic.thumbnail.extension}`);
+                    } else {
                         console.error("Expected an array but got:", json);
                     }
                 } else{
@@ -24,23 +28,20 @@ const CreatorInfo = ({creatorName, comicName, comicId}) => {
                     console.error("expected JSON but got:", text);
                 } 
             }   catch (error) {
-                console.error("error fetching creator data:", error);
+                console.error("error fetching comic data:", error);
             }
         };
 
-        fetchCreatorData();
-        // const getComicCharacters = async () => {
-        //     const response = await fetch(
-
-        //     )
-        // }
-    }, [comicId]);//useEffect doesn't run on every render, runs only when the comic name we pass in changes
+        fetchComicData();
+    }, [comicId]);//useEffect doesn't run on every render, runs only when the comicId we pass in changes
 
     return (
         <div>
+            {comicImage && <img src={comicImage} alt="Comic Thumbnail" />}
             {creators ? (
                 creators.map((creator) => (
-                    <p key={creator.id}>{creator.fullName}</p>
+                    // <p key={creator.id}>{creator.fullName}</p>
+                    <p key={creator.resourceURI}>{creator.name}</p>
                 ))
             ) : (
                 <p>Loading creators...</p>
