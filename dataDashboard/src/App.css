@@ -5,7 +5,13 @@
   text-align: center;
 }
 
-.logo {
+body, html{
+  margin: 0;
+  padding: 0; font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+/* .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
@@ -31,14 +37,17 @@
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
-}
+} */
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+/* Ensure the whole page takes up the full viewport height */
+.whole-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centers content vertically */
+  align-items: center; /* Centers content horizontally */
+  min-height: 100vh; /* Ensures the container takes up the full height of the viewport */
+  text-align: center; /* Centers text within the container */
+  padding: 20px;
 }
 
 
@@ -49,7 +58,65 @@
   text-align: center; /*center the text*/
 }
 
-/* .centered-list li {
-  display: inline-block; /* Makes the list items inline-block */
-  /* text-align: left; Aligns text to the left within the inline-block */
-/* } *
+.centered-list li {
+  display: inline-block;
+  text-align: left;
+}
+
+.centered-list img {
+  max-width: 100px; /* Adjust the size of the comic thumbnail */
+  display: block;
+  margin: 0 auto;
+}
+
+.title{
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #333;
+  text-align: center;
+}
+
+.search-bar{
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.search-bar input{
+  width: 100%;
+  padding: 10px;
+  font-size: 1em;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.dashboard{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.card img{
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.card h2{
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.card p{
+  margin: 5px 0;
+  color: #666;
+}
