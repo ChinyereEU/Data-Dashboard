@@ -40,3 +40,16 @@
 .read-the-docs {
   color: #888;
 }
+
+
+.centered-list{
+  list-style-position: inside; /*ensure bullets are inside the list item*/
+  padding: 0; /*remove default padding*/
+  margin: 0; /*remove default margin*/
+  text-align: center; /*center the text*/
+}
+
+/* .centered-list li {
+  display: inline-block; /* Makes the list items inline-block */
+  /* text-align: left; Aligns text to the left within the inline-block */
+/* } *
