@@ -4,6 +4,8 @@ const API_KEY = '0ce5b7cc67ee05cd71a0b41eabcd9a9a';
 const CreatorInfo = ({comicId}) => {//use the comic id to get all the other comic info
     const [creators, setCreators] = useState(null);
     const [comicImage, setComicImage] = useState(null);
+    const [comicPrice, setComicPrice] = useState(null);
+    //add page count & description
 
 
     useEffect(() => {
@@ -20,6 +22,7 @@ const CreatorInfo = ({comicId}) => {//use the comic id to get all the other comi
                         const comic = json.data.results[0];
                         setCreators(comic.creators.items);
                         setComicImage(`${comic.thumbnail.path}.${comic.thumbnail.extension}`);
+                        setComicPrice(comic.prices[0].price);
                     } else {
                         console.error("Expected an array but got:", json);
                     }
@@ -38,6 +41,7 @@ const CreatorInfo = ({comicId}) => {//use the comic id to get all the other comi
     return (
         <div>
             {comicImage && <img src={comicImage} alt="Comic Thumbnail" />}
+            {comicPrice != null && <p>Price: ${comicPrice}</p>}
             {creators ? (
                 creators.map((creator) => (
                     // <p key={creator.id}>{creator.fullName}</p>
