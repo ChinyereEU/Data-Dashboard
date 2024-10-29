@@ -1,0 +1,34 @@
+/* Primary Color */
+:root {
+    --primary-color: #2C3E50;
+    --secondary-color: #18BC9C;
+    --accent-color: #E74C3C;
+    --background-color: #ECF0F1;
+    --text-color: #2C3E50;
+}
+
+
+.sidebar{
+    width: 200px;
+    height: 100vh;
+    /* background-color: var(--primary-color); */
+    background-color: rgba(44, 62, 80, 0.5); /*translucent background*/
+    color: var(--background-color);
+    position: fixed;
+}
+
+.sidebar a {
+    color: var(--background-color);
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.sidebar a:hover {
+    background-color: var(--secondary-color);
+}
+
+.content {
+    margin-left: 220px;
+    padding: 20px;
+}
