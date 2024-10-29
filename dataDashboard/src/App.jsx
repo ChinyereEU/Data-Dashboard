@@ -1,4 +1,9 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Sidebar from './components/SideBar';
+import DashboardHome  from './components/DashBoardHome';
+import SearchPage from './components/SearchPage';
+import AboutPage from './components/About';
 import debounce from 'lodash.debounce';
 import './App.css';
 import CreatorInfo from './components/CreatorInfo';
@@ -119,52 +124,82 @@ const debouncedSearchItems = useCallback(
   //   fetchComics().catch(console.error);
   // }, []);
 
-  return (
-    <div className="whole-page">
-      <h1 className="title">Marvel Comics</h1>
-      <div className="search-bar">
-        <input
-          type="text"
-          placeholder="search comics..."
-          value={searchInput}
-          onChange={(e) => debouncedSearchItems(e.target.value)}
-        />
-      </div>
-      <div className="dashboard">
-        {filteredResults.length > 0 ? (
-            filteredResults.map((comic) => (
-              <div className="card" key={comic.id}>
-                <h2>{comic.title}</h2>
-                <CreatorInfo comicId={comic.id} />
+//   return (
+//     <div className="whole-page">
+//       <h1 className="title">Marvel Comics</h1>
+//       <div className="search-bar">
+//         <input
+//           type="text"
+//           placeholder="search comics..."
+//           value={searchInput}
+//           onChange={(e) => debouncedSearchItems(e.target.value)}
+//         />
+//       </div>
+//       <div className="dashboard">
+//         {filteredResults.length > 0 ? (
+//             filteredResults.map((comic) => (
+//               <div className="card" key={comic.id}>
+//                 <h2>{comic.title}</h2>
+//                 <CreatorInfo comicId={comic.id} />
+//               </div>
+//             ))
+//           ) : (
+//             <p>Loading...</p>
+//           )}
+//         {/* <ul className="centered-list">
+//           {searchInput.length > 0 ? (
+//             filteredResults.length > 0 ? (
+//               filteredResults.map((comic) => (
+//                 <li key={comic.id}>
+//                   {comic.title}
+//                   <CreatorInfo comicId={comic.id} />
+//                 </li>
+//               ))
+//             ) : (//if filteredResults < 0
+//               <li>Loading...</li>
+//             )
+//           ) : (//if there is no searchInput
+//             list.map((comic) => (
+//               <li key={comic.id}>
+//                 {comic.title}
+//                 <CreatorInfo comicId={comic.id} />
+//               </li>
+//             ))
+//           )}
+//         </ul> */}
+//       </div>
+//     </div>
+//   );
+// };
+
+return (
+    <Router>
+      <div className="app">
+        <Sidebar />
+        <div className="content">
+          <Routes>
+            <Route path="/" element={
+              <div className="dashboard">
+                {filteredResults.length > 0 ? (
+                  filteredResults.map((comic) => (
+                    <div className="card" key={comic.id}>
+                      <h2>{comic.title}</h2>
+                      <CreatorInfo comicId={comic.id} />
+                    </div>
+                  ))
+                ) : (
+                  <p>loading...</p>
+                )}
               </div>
-            ))
-          ) : (
-            <p>Loading...</p>
-          )}
-        {/* <ul className="centered-list">
-          {searchInput.length > 0 ? (
-            filteredResults.length > 0 ? (
-              filteredResults.map((comic) => (
-                <li key={comic.id}>
-                  {comic.title}
-                  <CreatorInfo comicId={comic.id} />
-                </li>
-              ))
-            ) : (//if filteredResults < 0
-              <li>Loading...</li>
-            )
-          ) : (//if there is no searchInput
-            list.map((comic) => (
-              <li key={comic.id}>
-                {comic.title}
-                <CreatorInfo comicId={comic.id} />
-              </li>
-            ))
-          )}
-        </ul> */}
+            } />
+            <Route path="/search" element={<SearchPage />} />
+            <Route path="/about" element={<AboutPage />} />
+          </Routes>
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
+
 
 export default App;
