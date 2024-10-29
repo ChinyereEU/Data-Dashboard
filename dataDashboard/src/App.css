@@ -3,41 +3,49 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+
+  /**Palette 1: Modern and Clean*/
+  --primary-color: #2C3E50;
+  --secondary-color: #18BC9C;
+  --accent-color: #E74C3C;
+  --background-color: #ECF0F1;
+  --text-color: #2C3E50;
+
+  /**Palette 2: Warm and Inviting*/
+  /* --primary-color: #D35400;
+  --secondary-color: #2980B9;
+  --accent-color: #E67E22;
+  --background-color: #F5F5F5;
+  --text-color: #2C3E50; */
+
+    /**Palette 3: Cool and Calm*/
+    /* --primary-color: #34495E;
+    --secondary-color: #1ABC9C;
+    --accent-color: #3498DB;
+    --background-color: #ECF0F1;
+    --text-color: #34495E; */
+
+    /**Palette 4: Vibrant and Fun*/
+    /* --primary-color: #8E44AD;
+    --secondary-color: #3498DB;
+    --accent-color: #F39C12;
+    --background-color: #F5F5F5;
+    --text-color: #2C3E50; */
+
+    /**Palette 5: Elegant and Sophisticated*/
+    /* --primary-color: #2C3E50;
+    --secondary-color: #8E44AD;
+    --accent-color: #E74C3C;
+    --background-color: #ECF0F1;
+    --text-color: #2C3E50; */
 }
 
 body, html{
   margin: 0;
   padding: 0; font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
-
-/* .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-} */
 
 /* Ensure the whole page takes up the full viewport height */
 .whole-page {
@@ -99,24 +107,31 @@ body, html{
 }
 
 .card {
-  background-color: #fff;
+  /* background-color: var(--secondary-color); */
+  background-color: rgba(24, 188, 156, 0.3); /*make translucent*/
+  color: var(--primary-color);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  text-align: left;
+  text-align: center;
 }
 
 .card img{
-  max-width: 100%;
+  /* max-width: 100%; */
+  width: 250px;
+  height: 300px;
+  object-fit: contain;
   border-radius: 5px;
+  border: 2px solid var(--accent-color);
 }
 
 .card h2{
+  color: var(--primary-color);
   font-size: 1.5em;
   margin: 10px 0;
 }
 
 .card p{
   margin: 5px 0;
-  color: #666;
+  color: var(--text-color);
 }
